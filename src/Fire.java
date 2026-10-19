@@ -1,3 +1,10 @@
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Queue;
+import java.util.Set;
+
 public class Fire {
     /**
      * Returns how long it takes for all vulnerable trees to be set on fire if a
@@ -39,7 +46,46 @@ public class Fire {
         // HINT: when adding to your BFS queue, you can include more information than
         // just a location. What other information might be useful?
 
+        
+        Location start = new Location(matchR, matchC, 0);
+        boolean[][] visited = new boolean[forest.length][forest[0].length];
+        Queue<Location> queue = new ArrayDeque<>();
+        queue.add(start);
+        visited[matchR][matchC] = true;
+
+        while (!queue.isEmpty()) {
+            Location current = queue.remove(start);
+            for (Location location : queue) {
+                if (condition) {
+                    
+                }
+            }
+            
+        }
+
+        Loc
+
         // Implement this AND add more tests!!!
-        return -1;
+        return time;
+        }
+    
+    public static List<Location> possibleMoves(char[][] forest, Location current) {
+        int[][] moves = new int[][] {
+                { -1, 0 }, // UP
+                { 1, 0 }, // DOWN
+                { 0, -1 }, // LEFT
+                { 0, 1 }, // RIGHT
+        };
+        List<Location> vaildMoves = new ArrayList<>();
+        for (int[] move : moves) {
+            Location possibleMove = new Location(current.row() + move[0],
+                    current.row() + move[1]);
+
+            if(possibleMove.row() >= 0 && possibleMove.row() < forest.length && possibleMove.col() >= 0
+                    && possibleMove < forest[0].length) {
+                vaildMoves.add(possibleMove);
+            }
+        }
+        return vaildMoves;
     }
 }
