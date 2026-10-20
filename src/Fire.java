@@ -66,7 +66,7 @@ public class Fire {
         while (!queue.isEmpty()) {
             Location current = queue.remove();
             if (visited.contains(new Position(current.row(), current.column()))) {continue;}
-            visited.add(current.row(), current.column());
+            visited.add(new Position(current.row(), current.column()));
             time = current.time();
                 List<Location> neighbors  = possibleMoves(forest, current);
              for (Location neighbor : neighbors) {
@@ -87,10 +87,10 @@ public class Fire {
         List<Location> vaildMoves = new ArrayList<>();
         for (int[] move : moves) {
             Location possibleMove = new Location(current.row() + move[0],
-                    current.row() + move[1]);
+                    current.column() + move[1], current.time() +1);
 
-            if (possibleMove.row() >= 0 && possibleMove.row() < forest.length && possibleMove.col() >= 0
-                    && possibleMove < forest[0].length) {
+            if (possibleMove.row() >= 0 && possibleMove.row() < forest.length && possibleMove.column() >= 0
+                    && possibleMove.column() < forest[0].length && forest[possibleMove.row()][possibleMove.column()] == 't') {
                 vaildMoves.add(possibleMove);
             }
         }
